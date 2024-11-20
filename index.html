@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hileli Çark</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+    }
+    .wheel-container {
+      position: relative;
+      margin: 50px auto;
+      width: 300px;
+      height: 300px;
+    }
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 5px solid #333;
+      position: absolute;
+      transform: rotate(0deg);
+      transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+    .wheel .segment {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      background-color: #fff;
+      transform-origin: 100% 100%;
+      clip-path: polygon(100% 100%, 0 100%, 100% 0);
+      border: 1px solid #ccc;
+    }
+    .wheel .segment:nth-child(1) { background-color: #FFD700; transform: rotate(0deg); }
+    .wheel .segment:nth-child(2) { background-color: #FF4500; transform: rotate(45deg); }
+    .wheel .segment:nth-child(3) { background-color: #ADFF2F; transform: rotate(90deg); }
+    .wheel .segment:nth-child(4) { background-color: #1E90FF; transform: rotate(135deg); }
+    .wheel .segment:nth-child(5) { background-color: #DA70D6; transform: rotate(180deg); }
+    .wheel .segment:nth-child(6) { background-color: #FFA500; transform: rotate(225deg); }
+    .wheel .segment:nth-child(7) { background-color: #FF1493; transform: rotate(270deg); }
+    .wheel .segment:nth-child(8) { background-color: #32CD32; transform: rotate(315deg); }
+    .pointer {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 30px solid #333;
+      z-index: 10;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hileli Çark</h1>
+  <div class="wheel-container">
+    <div class="pointer"></div>
+    <div class="wheel">
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+    </div>
+  </div>
+  <button class="button" onclick="spinWheel()">Çevir</button>
+
+  <script>
+    const wheel = document.querySelector('.wheel');
+    let isSpinning = false;
+
+    function spinWheel() {
+      if (isSpinning) return; // Zaten dönüyorsa işlem yapma
+      isSpinning = true;
+
+      // Hile: Belirli bir alanı hedefle
+      const targetAngle = 360 * 3 + 90; // Örneğin: 90 derece (2. segment)
+      wheel.style.transform = `rotate(${targetAngle}deg)`;
+
+      setTimeout(() => {
+        alert('Kazandınız!'); // Sonucu göster
+        isSpinning = false;
+      }, 4000); // Döndürme animasyonu süresince bekle
+    }
+  </script>
+</body>
+</html>
